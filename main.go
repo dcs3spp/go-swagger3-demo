@@ -1,18 +1,3 @@
-// @Version 1.0.0
-// @Title Backend API
-// @Description Rest API cloned from TutorialEdge/create-rest-api-in-go-tutorial
-// @ContactName SPears
-// @ContactEmail abce@email.com
-// @ContactURL http://www.example.com
-// @TermsOfServiceUrl http://www.example.com
-// @LicenseName MIT
-// @LicenseURL https://en.wikipedia.org/wiki/MIT_License
-// @Server http://localhost:5000 Local
-// @Server http://www.example-dev.com Development
-// @Server http://www.example.com Production
-// @Security AuthorizationHeader read write
-// @SecurityScheme AuthorizationHeader http bearer Input your token
-// main.go
 package main
 
 import (
@@ -38,6 +23,11 @@ type Article struct {
     Content string `json:"content" example:"Article content goes here"`
 }
 
+type ArticlesResponse struct {
+    Data []Article `json:"data" example:"[{\"id\":123, \"title\":\"Article title\", \"desc\":\"Article Description\", \"content\":\"Article content\"}]"`
+}
+
+
 /**
 * Variables
 **/
@@ -54,6 +44,11 @@ func homePage(w http.ResponseWriter, r *http.Request) {
     fmt.Println("Endpoint Hit: homePage")
 }
 
+// @Title Get all articles.
+// @Description Fetch all articles.
+// @Success 200 object ArticlesResponse "ArticlesResponse JSON"
+// @Resource articles
+// @Route /articles [get]
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
     fmt.Println("Endpoint Hit: returnAllArticles")
     json.NewEncoder(w).Encode(Articles)
@@ -79,7 +74,7 @@ func returnSingleArticle(w http.ResponseWriter, r *http.Request) {
 // @Title Add a new article.
 // @Description Create a new article.
 // @Param  article  body  Article  true  "Info for an article."
-// @Success  201  object  Article  "Article JSON"
+// @Success  201  object  Article  "The created article."
 // @Resource articles
 // @Route /articles [post]
 func createNewArticle(w http.ResponseWriter, r *http.Request) {
@@ -98,8 +93,8 @@ func createNewArticle(w http.ResponseWriter, r *http.Request) {
 
 // @Title Delete an article by ID.
 // @Description Delete the article associated with a specific ID.
-// @Param id path  string  true  "Id of a specific article."
-// @Success 204 object Article "No response"
+// @Param  id  path  string  true  "Id of a specific article."
+// @Success  204  object  Article  "No response"
 // @Resource articles
 // @Route /articles/{id} [delete]
 func deleteArticle(w http.ResponseWriter, r *http.Request) {
@@ -132,6 +127,21 @@ func handleRequests() {
     log.Fatal(http.ListenAndServe(":5000", handler))
 }
 
+
+// @Version 1.0.0
+// @Title Backend API
+// @Description Rest API cloned from TutorialEdge/create-rest-api-in-go-tutorial
+// @ContactName SPears
+// @ContactEmail abce@email.com
+// @ContactURL http://www.example.com
+// @TermsOfServiceUrl http://www.example.com
+// @LicenseName MIT
+// @LicenseURL https://en.wikipedia.org/wiki/MIT_License
+// @Server http://localhost:5000 Local
+// @Server http://www.example-dev.com Development
+// @Server http://www.example.com Production
+// @Security AuthorizationHeader read write
+// @SecurityScheme AuthorizationHeader http bearer Input your token
 func main() {
     Articles = []Article{
         Article{Id: "1", Title: "Hello", Desc: "Article Description", Content: "Article Content"},
