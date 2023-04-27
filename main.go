@@ -44,6 +44,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
     fmt.Println("Endpoint Hit: homePage")
 }
 
+
 // @Title Get all articles.
 // @Description Fetch all articles.
 // @Success 200 object ArticlesResponse "ArticlesResponse JSON"
@@ -119,6 +120,7 @@ func handleRequests() {
 
     c := cors.New(cors.Options{
         AllowedOrigins: []string{"*"},
+        AllowedMethods: []string{http.MethodGet, http.MethodPost, http.MethodDelete},
         AllowCredentials: true,
     })
 
