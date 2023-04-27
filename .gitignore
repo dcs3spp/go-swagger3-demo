@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+create-rest-api-in-go-tutorial
 
 # Test binary, built with `go test -c`
 *.test
