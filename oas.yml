@@ -1,0 +1,108 @@
+components:
+  schemas:
+    Article:
+      properties:
+        content:
+          example: Article content goes here
+          type: string
+        desc:
+          example: article description
+          type: string
+        id:
+          example: "123"
+          type: string
+        title:
+          example: Reverend
+          type: string
+      type: object
+  securitySchemes:
+    AuthorizationHeader:
+      description: Input your token
+      scheme: bearer
+      type: http
+info:
+  contact:
+    email: abce@email.com
+    name: SPears
+  description: Delete the article associated with a specific ID.
+  license:
+    name: MIT
+    url: https://en.wikipedia.org/wiki/MIT_License
+  termsOfService: http://www.example.com
+  title: Delete an article by ID.
+  version: 1.0.0
+openapi: 3.0.0
+paths:
+  /article:
+    post:
+      description: ' Create a new article.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: Article JSON
+      summary: Add a new article.
+      tags:
+      - articles
+  /articles/{articleID}:
+    delete:
+      description: ' Delete the article associated with a specific ID.'
+      parameters:
+      - description: Id of a specific article.
+        in: path
+        name: articleID
+        required: true
+        schema:
+          description: Id of a specific article.
+          format: string
+          type: string
+      responses:
+        "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: No response
+      summary: Delete an article by ID.
+      tags:
+      - articles
+    get:
+      description: ' Fetch the article associated with a specific ID.'
+      parameters:
+      - description: Id of a specific article.
+        in: path
+        name: articleID
+        required: true
+        schema:
+          description: Id of a specific article.
+          format: string
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: Article JSON
+      summary: Get an article by ID.
+      tags:
+      - articles
+security:
+- AuthorizationHeader:
+  - read
+  - write
+servers:
+- description: ' Local'
+  url: http://localhost:5000
+- description: ' Development'
+  url: http://www.example-dev.com
+- description: ' Production'
+  url: http://www.example.com
