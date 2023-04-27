@@ -33,7 +33,7 @@ info:
   version: 1.0.0
 openapi: 3.0.0
 paths:
-  /article:
+  /articles:
     post:
       description: ' Create a new article.'
       requestBody:
@@ -52,13 +52,13 @@ paths:
       summary: Add a new article.
       tags:
       - articles
-  /articles/{articleID}:
+  /articles/{id}:
     delete:
       description: ' Delete the article associated with a specific ID.'
       parameters:
       - description: Id of a specific article.
         in: path
-        name: articleID
+        name: id
         required: true
         schema:
           description: Id of a specific article.
@@ -79,7 +79,7 @@ paths:
       parameters:
       - description: Id of a specific article.
         in: path
-        name: articleID
+        name: id
         required: true
         schema:
           description: Id of a specific article.

@@ -61,10 +61,10 @@ func returnAllArticles(w http.ResponseWriter, r *http.Request) {
 
 // @Title Get an article by ID.
 // @Description Fetch the article associated with a specific ID.
-// @Param articleID path  string  true  "Id of a specific article."
+// @Param id path  string  true  "Id of a specific article."
 // @Success 200 object Article "Article JSON"
 // @Resource articles
-// @Route /articles/{articleID} [get]
+// @Route /articles/{id} [get]
 func returnSingleArticle(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     key := vars["id"]
@@ -81,7 +81,7 @@ func returnSingleArticle(w http.ResponseWriter, r *http.Request) {
 // @Param  article  body  Article  true  "Info for an article."
 // @Success  201  object  Article  "Article JSON"
 // @Resource articles
-// @Route /article [post]
+// @Route /articles [post]
 func createNewArticle(w http.ResponseWriter, r *http.Request) {
     // get the body of our POST request
     // unmarshal this into a new Article struct
@@ -98,10 +98,10 @@ func createNewArticle(w http.ResponseWriter, r *http.Request) {
 
 // @Title Delete an article by ID.
 // @Description Delete the article associated with a specific ID.
-// @Param articleID path  string  true  "Id of a specific article."
+// @Param id path  string  true  "Id of a specific article."
 // @Success 204 object Article "No response"
 // @Resource articles
-// @Route /articles/{articleID} [delete]
+// @Route /articles/{id} [delete]
 func deleteArticle(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     id := vars["id"]
@@ -116,11 +116,11 @@ func deleteArticle(w http.ResponseWriter, r *http.Request) {
 
 func handleRequests() {
     myRouter := mux.NewRouter().StrictSlash(true)
-    myRouter.HandleFunc("/", homePage)
-    myRouter.HandleFunc("/articles", returnAllArticles)
-    myRouter.HandleFunc("/article", createNewArticle).Methods("POST")
-    myRouter.HandleFunc("/article/{id}", deleteArticle).Methods("DELETE")
-    myRouter.HandleFunc("/article/{id}", returnSingleArticle)
+    myRouter.HandleFunc("/", homePage).Methods("GET")
+    myRouter.HandleFunc("/articles", returnAllArticles).Methods("GET")
+    myRouter.HandleFunc("/articles", createNewArticle).Methods("POST")
+    myRouter.HandleFunc("/articles/{id}", deleteArticle).Methods("DELETE")
+    myRouter.HandleFunc("/articles/{id}", returnSingleArticle).Methods("GET")
 
     c := cors.New(cors.Options{
         AllowedOrigins: []string{"*"},
