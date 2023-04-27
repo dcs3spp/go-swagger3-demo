@@ -24,3 +24,11 @@ The docker-compose services can be stopped by issuing the following command:
 ```bash
 make down
 ```
+
+## Known Issues
+
+The following are issues currently encountered:
+
+- How to represent a 204 response?
+- When using the OAS swagger UI to try out the DELETE path it raises a CORS
+  error.
