@@ -47,7 +47,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 
 // @Title Get all articles.
 // @Description Fetch all articles.
-// @Success 200 object ArticlesResponse "ArticlesResponse JSON"
+// @Success 200 object ArticlesResponse "A list of all articles"
 // @Resource articles
 // @Route /articles [get]
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
@@ -58,7 +58,7 @@ func returnAllArticles(w http.ResponseWriter, r *http.Request) {
 // @Title Get an article by ID.
 // @Description Fetch the article associated with a specific ID.
 // @Param id path  string  true  "Id of a specific article."
-// @Success 200 object Article "Article JSON"
+// @Success 200 object Article "The  article referenced by the id parameter"
 // @Resource articles
 // @Route /articles/{id} [get]
 func returnSingleArticle(w http.ResponseWriter, r *http.Request) {
@@ -95,7 +95,7 @@ func createNewArticle(w http.ResponseWriter, r *http.Request) {
 // @Title Delete an article by ID.
 // @Description Delete the article associated with a specific ID.
 // @Param  id  path  string  true  "Id of a specific article."
-// @Success  204  object  Article  "No response"
+// @success 204 "No Response"
 // @Resource articles
 // @Route /articles/{id} [delete]
 func deleteArticle(w http.ResponseWriter, r *http.Request) {
@@ -132,7 +132,7 @@ func handleRequests() {
 
 // @Version 1.0.0
 // @Title Backend API
-// @Description Rest API cloned from TutorialEdge/create-rest-api-in-go-tutorial
+// @Description API TutorialEdge/create-rest-api-in-go-tutorial with swagger!
 // @ContactName SPears
 // @ContactEmail abce@email.com
 // @ContactURL http://www.example.com

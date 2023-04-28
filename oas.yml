@@ -49,7 +49,7 @@ info:
   contact:
     email: abce@email.com
     name: SPears
-  description: Rest API cloned from TutorialEdge/create-rest-api-in-go-tutorial
+  description: API TutorialEdge/create-rest-api-in-go-tutorial with swagger!
   license:
     name: MIT
     url: https://en.wikipedia.org/wiki/MIT_License
@@ -67,7 +67,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArticlesResponse'
-          description: ArticlesResponse JSON
+          description: A list of all articles
       summary: Get all articles.
       tags:
       - articles
@@ -103,11 +103,7 @@ paths:
           type: string
       responses:
         "204":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Article'
-          description: No response
+          description: No Response
       summary: Delete an article by ID.
       tags:
       - articles
@@ -128,7 +124,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Article'
-          description: Article JSON
+          description: The  article referenced by the id parameter
       summary: Get an article by ID.
       tags:
       - articles
