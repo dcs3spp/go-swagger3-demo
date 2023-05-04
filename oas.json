@@ -1,0 +1,219 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Backend API",
+    "description": "API TutorialEdge/create-rest-api-in-go-tutorial with swagger!",
+    "termsOfService": "http://www.example.com",
+    "contact": {
+      "name": "SPears",
+      "email": "abce@email.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://en.wikipedia.org/wiki/MIT_License"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": " Local"
+    },
+    {
+      "url": "http://www.example-dev.com",
+      "description": " Development"
+    },
+    {
+      "url": "http://www.example.com",
+      "description": " Production"
+    }
+  ],
+  "paths": {
+    "/articles": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A list of all articles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/github.com.TutorialEdge.create-rest-api-in-go-tutorial.ArticlesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "articles"
+        ],
+        "summary": "Get all articles.",
+        "description": " Fetch all articles."
+      },
+      "post": {
+        "responses": {
+          "201": {
+            "description": "The created article.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/github.com.TutorialEdge.create-rest-api-in-go-tutorial.Article"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "articles"
+        ],
+        "summary": "Add a new article.",
+        "description": " Create a new article.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/github.com.TutorialEdge.create-rest-api-in-go-tutorial.Article"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/articles/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The  article referenced by the id parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/github.com.TutorialEdge.create-rest-api-in-go-tutorial.Article"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "articles"
+        ],
+        "summary": "Get an article by ID.",
+        "description": " Fetch the article associated with a specific ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of a specific article.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Id of a specific article."
+            }
+          }
+        ]
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "No Response"
+          }
+        },
+        "tags": [
+          "articles"
+        ],
+        "summary": "Delete an article by ID.",
+        "description": " Delete the article associated with a specific ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of a specific article.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Id of a specific article."
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Article": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123"
+          },
+          "title": {
+            "type": "string",
+            "example": "Reverend"
+          },
+          "desc": {
+            "type": "string",
+            "example": "article description"
+          },
+          "content": {
+            "type": "string",
+            "example": "Article content goes here"
+          }
+        }
+      },
+      "github.com.TutorialEdge.create-rest-api-in-go-tutorial.ArticlesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "123"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Reverend"
+                },
+                "desc": {
+                  "type": "string",
+                  "example": "article description"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "Article content goes here"
+                }
+              }
+            },
+            "example": [
+              {
+                "content": "Article content",
+                "desc": "Article Description",
+                "id": 123,
+                "title": "Article title"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "AuthorizationHeader": {
+        "type": "http",
+        "description": "Input your token",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "AuthorizationHeader": [
+        "read",
+        "write"
+      ]
+    }
+  ]
+}

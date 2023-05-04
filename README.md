@@ -2,6 +2,14 @@
 
 This repository demonstrates usage of go-swagger3.
 
+## Prerequisites
+
+Install go-swagger3.
+
+```bash
+go install github.com/parvez3019/go-swagger3@latest
+```
+
 ## Getting Started
 
 A docker-compose stack is provided that contains the following services:
@@ -13,7 +21,7 @@ To start the docker-compose services, issue the following commands:
 
 ```bash
 make build-api
-make swagger
+make build-swagger
 make up
 ```
 
@@ -27,6 +35,13 @@ make down
 
 ## Known Issues
 
-The following are issues currently encountered:
+- If `go.mod` uses `replace` directive then current release does not parse.
+I reported this [here](https://github.com/parvez3019/go-swagger3/issues/21)
 
-- How to represent a 204 response?
+They have merged a [fix](https://github.com/parvez3020/go-swagger3/pull/23) into
+their master branch, however it has not been released yet. So for the time being
+if wanted to use this would have to build from source.
+
+- Also raised an [issue](https://github.com/parvez3019/go-swagger3/issues/22)
+for how to document a different example for a type for a different endpoint.
+
